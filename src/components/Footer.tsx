@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
               </span>
             </Link>
             <p className="text-gray-400 mb-6 max-w-sm leading-relaxed">
-              Bilim, tarbiya va kelajak uchun eng yaxshi boshlang'ich. 
+              Bilim, tarbiya va kelajak uchun eng yaxshi boshlang'ich.
               Biz har bir o'quvchining yashirin potentsialini ochishga intilamiz.
             </p>
           </div>

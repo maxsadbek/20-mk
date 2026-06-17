@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Lenis from 'lenis'
 import { Header } from './components/Header'
 import { Hero } from './components/sections/Hero'
