@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Menu, X} from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { toggleMobileMenu, setMobileMenuOpen } from '../store/uiSlice'
 import { Button } from './ui/Button'
+import Logo from '../assets/logo.png'
 
 export const Header: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -17,26 +20,44 @@ export const Header: React.FC = () => {
     { name: 'Aloqa', path: '#contact' },
   ]
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (isMobileMenuOpen) {
+      dispatch(setMobileMenuOpen(false))
+    }
+    // We let Lenis in App.tsx handle the actual scrolling to the hash
+  }
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-soft">
+    <header className="fixed top-0 left-0 right-0 z-50 glass transition-all duration-300">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-yellow text-text-primary font-bold text-xl">
-              20
-            </div>
-            <span className="text-xl font-semibold text-text-primary">maktab</span>
+          <Link to="/" className="flex items-center space-x-2" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <img src={Logo} alt="20-maktab logo" className="h-10 w-auto object-contain" />
+            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 hidden sm:block">
+              20-maktab
+            </span>
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className="text-text-secondary hover:text-brand-yellow transition-colors duration-200"
-              >
-                {item.name}
-              </Link>
+              item.path.startsWith('#') ? (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  onClick={(e) => handleNavClick(e, item.path)}
+                  className="text-text-secondary hover:text-brand-yellow transition-colors duration-200 cursor-pointer"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className="text-text-secondary hover:text-brand-yellow transition-colors duration-200"
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
             <Button variant="primary">Ariza topshirish</Button>
           </div>
@@ -46,41 +67,52 @@ export const Header: React.FC = () => {
             onClick={() => dispatch(toggleMobileMenu())}
             aria-label="Toggle menu"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
               {isMobileMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
+                <X className="w-6 h-6" />
               ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
+                <Menu className="w-6 h-6" />
               )}
-            </svg>
           </button>
         </div>
 
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className="block text-text-secondary hover:text-brand-yellow transition-colors duration-200"
-                onClick={() => dispatch(setMobileMenuOpen(false))}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <Button variant="primary" className="w-full">
-              Ariza topshirish
-            </Button>
-          </div>
-        )}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+              animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="pb-4 space-y-4">
+                {navItems.map((item) => (
+                  item.path.startsWith('#') ? (
+                    <a
+                      key={item.path}
+                      href={item.path}
+                      className="block text-text-secondary hover:text-brand-yellow transition-colors duration-200 cursor-pointer"
+                      onClick={(e) => handleNavClick(e, item.path)}
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className="block text-text-secondary hover:text-brand-yellow transition-colors duration-200"
+                      onClick={() => dispatch(setMobileMenuOpen(false))}
+                    >
+                      {item.name}
+                    </Link>
+                  )
+                ))}
+                <Button variant="primary" className="w-full">
+                  Ariza topshirish
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </header>
   )

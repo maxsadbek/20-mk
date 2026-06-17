@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import Lenis from 'lenis'
 import { Header } from './components/Header'
 import { Hero } from './components/sections/Hero'
 import { About } from './components/sections/About'
@@ -10,6 +11,46 @@ import { Contact } from './components/sections/Contact'
 import { Footer } from './components/Footer'
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    })
+
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    // Handle anchor links for lenis
+    const handleHashChange = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('a');
+      if (link && link.hash && link.hash.startsWith('#')) {
+        const id = link.hash.substring(1);
+        const element = document.getElementById(id);
+        if (element) {
+          e.preventDefault();
+          lenis.scrollTo(element, { offset: -80 }); // offset for header
+        }
+      }
+    };
+
+    document.addEventListener('click', handleHashChange);
+
+    return () => {
+      lenis.destroy()
+      document.removeEventListener('click', handleHashChange);
+    }
+  }, [])
+
   return (
     <div className="min-h-screen">
       <Header />

@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 
 interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string
   error?: string
 }
 
-export const Textarea: React.FC<TextareaProps> = ({ 
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ 
   label, 
   error, 
   className = '',
   ...props 
-}) => {
+}, ref) => {
   return (
     <div className="w-full">
       {label && (
@@ -19,6 +19,7 @@ export const Textarea: React.FC<TextareaProps> = ({
         </label>
       )}
       <textarea
+        ref={ref}
         className={`w-full rounded-input border border-gray-300 bg-white px-4 py-3 text-text-primary placeholder-gray-400 transition-colors duration-200 focus:border-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 resize-none ${error ? 'border-red-500' : ''} ${className}`}
         {...props}
       />
@@ -27,4 +28,6 @@ export const Textarea: React.FC<TextareaProps> = ({
       )}
     </div>
   )
-}
+})
+
+Textarea.displayName = 'Textarea'

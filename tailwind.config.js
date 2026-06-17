@@ -25,7 +25,43 @@ export default {
         'pill': '25px',
         'input': '10px',
       },
+      animation: {
+        blob: "blob 7s infinite",
+      },
+      keyframes: {
+        blob: {
+          "0%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+          "33%": {
+            transform: "translate(30px, -50px) scale(1.1)",
+          },
+          "66%": {
+            transform: "translate(-20px, 20px) scale(0.9)",
+          },
+          "100%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        ".glass": {
+          "background": "rgba(255, 255, 255, 0.8)",
+          "backdrop-filter": "blur(10px)",
+          "-webkit-backdrop-filter": "blur(10px)",
+        },
+        ".animation-delay-2000": {
+          "animation-delay": "2s",
+        },
+        ".animation-delay-4000": {
+          "animation-delay": "4s",
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 }

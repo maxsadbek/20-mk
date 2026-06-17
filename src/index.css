@@ -2,11 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: white;
-  color: #1a1a1a;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: #fafafa;
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #E3C15D;
+    color: #000;
+  }
 }
 
 .text-balance {
   text-wrap: balance;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }

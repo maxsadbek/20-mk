@@ -1,44 +1,45 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Logo from '../assets/logo.png'
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 border-b border-gray-800 pb-12">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-yellow text-gray-900 font-bold text-xl">
-                20
-              </div>
-              <span className="text-xl font-semibold">maktab</span>
-            </div>
-            <p className="text-gray-400 mb-4">
+            <Link to="/" className="flex items-center space-x-3 mb-6">
+              <img src={Logo} alt="20-maktab logo" className="h-12 w-auto object-contain bg-white rounded-lg p-1" />
+              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-yellow to-yellow-200">
+                20-maktab
+              </span>
+            </Link>
+            <p className="text-gray-400 mb-6 max-w-sm leading-relaxed">
               Bilim, tarbiya va kelajak uchun eng yaxshi boshlang'ich. 
-              Biz o'quvchilarning potentsialini ochishga intilamiz.
+              Biz har bir o'quvchining yashirin potentsialini ochishga intilamiz.
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Tezkor havolalar</h4>
-            <ul className="space-y-2">
+            <h4 className="text-lg font-bold mb-6 text-white">Tezkor havolalar</h4>
+            <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-brand-yellow transition-colors duration-200">
+                <Link to="/" className="text-gray-400 hover:text-brand-yellow hover:translate-x-1 transition-all duration-300 inline-block">
                   Bosh sahifa
                 </Link>
               </li>
               <li>
-                <Link to="#about" className="text-gray-400 hover:text-brand-yellow transition-colors duration-200">
+                <Link to="#about" className="text-gray-400 hover:text-brand-yellow hover:translate-x-1 transition-all duration-300 inline-block">
                   Biz haqimizda
                 </Link>
               </li>
               <li>
-                <Link to="#news" className="text-gray-400 hover:text-brand-yellow transition-colors duration-200">
+                <Link to="#news" className="text-gray-400 hover:text-brand-yellow hover:translate-x-1 transition-all duration-300 inline-block">
                   Yangiliklar
                 </Link>
               </li>
               <li>
-                <Link to="#contact" className="text-gray-400 hover:text-brand-yellow transition-colors duration-200">
+                <Link to="#contact" className="text-gray-400 hover:text-brand-yellow hover:translate-x-1 transition-all duration-300 inline-block">
                   Aloqa
                 </Link>
               </li>
@@ -46,11 +47,11 @@ export const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Ijtimoiy tarmoqlar</h4>
+            <h4 className="text-lg font-bold mb-6 text-white">Ijtimoiy tarmoqlar</h4>
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 transition-colors duration-200"
+                className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 hover:-translate-y-1 transition-all duration-300 shadow-lg"
                 aria-label="Facebook"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -59,7 +60,7 @@ export const Footer: React.FC = () => {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 transition-colors duration-200"
+                className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 hover:-translate-y-1 transition-all duration-300 shadow-lg"
                 aria-label="Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -68,7 +69,7 @@ export const Footer: React.FC = () => {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 transition-colors duration-200"
+                className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 hover:-translate-y-1 transition-all duration-300 shadow-lg"
                 aria-label="Telegram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -79,8 +80,12 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 20-maktab. Barcha huquqlar himoyalangan.</p>
+        <div className="text-center text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+          <p>&copy; {new Date().getFullYear()} 20-maktab. Barcha huquqlar himoyalangan.</p>
+          <div className="flex gap-4">
+            <a href="#" className="hover:text-brand-yellow transition-colors">Maxfiylik siyosati</a>
+            <a href="#" className="hover:text-brand-yellow transition-colors">Foydalanish shartlari</a>
+          </div>
         </div>
       </div>
     </footer>
