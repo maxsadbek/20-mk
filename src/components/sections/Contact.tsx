@@ -7,7 +7,7 @@ import { Textarea } from '../ui/Textarea'
 import { Button } from '../ui/Button'
 import { Card } from '../ui/Card'
 import { AnimatedText } from '../ui/AnimatedText'
-import { ContactFormData } from '../../types'
+import { ContactFormData } from '../../types/index'
 import { MapPin, Phone, Mail, Send } from 'lucide-react'
 
 const contactSchema = z.object({

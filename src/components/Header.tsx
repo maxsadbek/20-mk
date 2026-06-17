@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
     { name: 'Aloqa', path: '#contact' },
   ]
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+  const handleNavClick = () => {
     if (isMobileMenuOpen) {
       dispatch(setMobileMenuOpen(false))
     }
@@ -34,7 +34,6 @@ export const Header: React.FC = () => {
           <Link to="/" className="flex items-center space-x-2" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <img src={Logo} alt="20-maktab logo" className="h-10 w-auto object-contain" />
             <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 hidden sm:block">
-              20-maktab
             </span>
           </Link>
 
@@ -44,7 +43,7 @@ export const Header: React.FC = () => {
                 <a
                   key={item.path}
                   href={item.path}
-                  onClick={(e) => handleNavClick(e, item.path)}
+                  onClick={handleNavClick}
                   className="text-text-secondary hover:text-brand-yellow transition-colors duration-200 cursor-pointer"
                 >
                   {item.name}
@@ -91,7 +90,7 @@ export const Header: React.FC = () => {
                       key={item.path}
                       href={item.path}
                       className="block text-text-secondary hover:text-brand-yellow transition-colors duration-200 cursor-pointer"
-                      onClick={(e) => handleNavClick(e, item.path)}
+                      onClick={handleNavClick}
                     >
                       {item.name}
                     </a>

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { NewsItem } from '../types'
+import { NewsItem } from '../types/index'
 
 interface NewsState {
   items: NewsItem[]
