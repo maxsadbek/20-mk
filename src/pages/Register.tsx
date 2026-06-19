@@ -11,7 +11,7 @@ import { AnimatedText } from '../components/ui/AnimatedText'
 import { RegisterFormData } from '../types/index'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { registerUser, clearError } from '../store/authSlice'
-import { UserPlus, Mail, Lock, Phone, User, ArrowRight } from 'lucide-react'
+import { UserPlus, Mail, Lock, Phone, User, ArrowRight, Shield, CheckCircle } from 'lucide-react'
 
 const registerSchema = z.object({
   name: z.string().min(2, 'Ism kamida 2 ta belgidan iborat bo\'lishi kerak'),
@@ -57,30 +57,36 @@ export const Register: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20 px-4 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 -left-4 w-72 h-72 bg-brand-yellow rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+      <div className="absolute top-0 -right-4 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md"
+        className="w-full max-w-lg relative z-10"
       >
         <AnimatedText>
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-yellow rounded-2xl mb-4">
-              <UserPlus className="w-8 h-8 text-gray-900" />
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-brand-yellow to-yellow-600 rounded-3xl mb-6 shadow-lg shadow-brand-yellow/30">
+              <UserPlus className="w-10 h-10 text-gray-900" />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Ro\'yxatdan o\'tish</h1>
-            <p className="text-gray-600">Yangi hisob yarating</p>
+            <h1 className="text-4xl font-bold text-gray-900 mb-3">Ro'yxatdan o'tish</h1>
+            <p className="text-gray-600 text-lg">20-maktab oilasiga qo'shiling</p>
           </div>
         </AnimatedText>
 
-        <Card className="p-8 shadow-2xl shadow-gray-200/50 border border-gray-100 rounded-3xl">
+        <Card className="p-8 lg:p-10 shadow-2xl shadow-gray-200/50 border border-gray-100 rounded-3xl bg-white/80 backdrop-blur-sm">
           {error && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"
+              className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm flex items-center gap-2"
             >
+              <Shield className="w-5 h-5" />
               {error}
             </motion.div>
           )}
@@ -88,7 +94,7 @@ export const Register: React.FC = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
               <Input
-                label="Ism"
+                label="Ism va Familya"
                 placeholder="Ismingizni kiriting"
                 icon={<User className="w-5 h-5" />}
                 {...register('name')}
@@ -98,7 +104,7 @@ export const Register: React.FC = () => {
 
             <div>
               <Input
-                label="Email"
+                label="Email manzil"
                 type="email"
                 placeholder="email@example.com"
                 icon={<Mail className="w-5 h-5" />}
@@ -109,7 +115,7 @@ export const Register: React.FC = () => {
 
             <div>
               <Input
-                label="Telefon"
+                label="Telefon raqami"
                 type="tel"
                 placeholder="+998 90 123 45 67"
                 icon={<Phone className="w-5 h-5" />}
@@ -122,7 +128,7 @@ export const Register: React.FC = () => {
               <Input
                 label="Parol"
                 type="password"
-                placeholder="••••••••"
+                placeholder="Kamida 6 ta belgi"
                 icon={<Lock className="w-5 h-5" />}
                 {...register('password')}
                 error={errors.password?.message}
@@ -133,7 +139,7 @@ export const Register: React.FC = () => {
               <Input
                 label="Parolni tasdiqlang"
                 type="password"
-                placeholder="••••••••"
+                placeholder="Parolni qayta kiriting"
                 icon={<Lock className="w-5 h-5" />}
                 {...register('confirmPassword')}
                 error={errors.confirmPassword?.message}
@@ -143,29 +149,40 @@ export const Register: React.FC = () => {
             <Button
               type="submit"
               variant="primary"
-              className="w-full flex items-center justify-center gap-2 py-4 text-lg"
+              className="w-full flex items-center justify-center gap-2 py-4 text-lg shadow-lg shadow-brand-yellow/30 hover:shadow-brand-yellow/50 transition-all"
               disabled={loading}
             >
               {loading ? 'Ro\'yxatdan o\'tilmoqda...' : (
                 <>
-                  Ro\'yxatdan o\'tish <ArrowRight className="w-5 h-5" />
+                  Ro'yxatdan o'tish <ArrowRight className="w-5 h-5" />
                 </>
               )}
             </Button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-gray-600">
+          <div className="mt-8 pt-6 border-t border-gray-200">
+            <p className="text-gray-600 text-center mb-4">
               Hisobingiz bormi?{' '}
               <Link to="/login" className="text-brand-yellow font-semibold hover:underline">
                 Tizimga kiring
               </Link>
             </p>
+            
+            <div className="flex items-center justify-center gap-6 text-sm text-gray-500">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-500" />
+                <span>Tez ro'yxatdan o'tish</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-500" />
+                <span>Xavfsiz ma'lumotlar</span>
+              </div>
+            </div>
           </div>
         </Card>
 
         <div className="mt-6 text-center">
-          <Link to="/" className="text-gray-500 hover:text-brand-yellow transition-colors inline-flex items-center gap-2">
+          <Link to="/" className="text-gray-500 hover:text-brand-yellow transition-colors inline-flex items-center gap-2 font-medium">
             Bosh sahifaga qaytish
           </Link>
         </div>

@@ -118,9 +118,9 @@ export const Login: React.FC = () => {
 
           <div className="mt-6 text-center">
             <p className="text-gray-600">
-              Hisobingiz yo\'qmi?{' '}
+              Hisobingiz yo'qmi?{' '}
               <Link to="/register" className="text-brand-yellow font-semibold hover:underline">
-                Ro\'yxatdan o\'ting
+                Ro'yxatdan o'ting
               </Link>
             </p>
           </div>

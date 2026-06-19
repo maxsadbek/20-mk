@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 border-b border-gray-800 pb-12">
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center space-x-3 mb-6">
-              <img src={Logo} alt="20-maktab logo" className="h-12 w-auto object-contain bg-white rounded-lg p-1" />
+              <img src={Logo} alt="20-maktab logo" className="h-12 w-auto object-contain" />
               <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-yellow to-yellow-200">
                 20-maktab
               </span>
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="#contact" className="text-gray-400 hover:text-brand-yellow hover:translate-x-1 transition-all duration-300 inline-block">
+                <Link to="/contact" className="text-gray-400 hover:text-brand-yellow hover:translate-x-1 transition-all duration-300 inline-block">
                   Aloqa
                 </Link>
               </li>

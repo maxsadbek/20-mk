@@ -19,7 +19,6 @@ export const Header: React.FC = () => {
     { name: 'Yangiliklar', path: '#news' },
     { name: 'O\'qituvchilar', path: '#teachers' },
     { name: 'Galereya', path: '#gallery' },
-    { name: 'Aloqa', path: '/contact' },
   ]
 
   const handleLogout = () => {
