@@ -1,15 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, X} from 'lucide-react'
+import { Menu, X, LogOut, User } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { toggleMobileMenu, setMobileMenuOpen } from '../store/uiSlice'
+import { logoutUser } from '../store/authSlice'
 import { Button } from './ui/Button'
 import Logo from '../assets/logo.png'
 
 export const Header: React.FC = () => {
   const dispatch = useAppDispatch()
   const isMobileMenuOpen = useAppSelector((state) => state.ui.isMobileMenuOpen)
+  const { user, isAuthenticated } = useAppSelector((state) => state.auth)
 
   const navItems = [
     { name: 'Bosh sahifa', path: '/' },
@@ -17,8 +19,12 @@ export const Header: React.FC = () => {
     { name: 'Yangiliklar', path: '#news' },
     { name: 'O\'qituvchilar', path: '#teachers' },
     { name: 'Galereya', path: '#gallery' },
-    { name: 'Aloqa', path: '#contact' },
+    { name: 'Aloqa', path: '/contact' },
   ]
+
+  const handleLogout = () => {
+    dispatch(logoutUser())
+  }
 
   const handleNavClick = () => {
     if (isMobileMenuOpen) {
@@ -58,7 +64,27 @@ export const Header: React.FC = () => {
                 </Link>
               )
             ))}
-            <Button variant="primary">Ariza topshirish</Button>
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2 text-text-primary">
+                  <User className="w-5 h-5" />
+                  <span className="font-medium">{user?.name}</span>
+                </div>
+                <Button variant="secondary" onClick={handleLogout} className="flex items-center gap-2">
+                  <LogOut className="w-4 h-4" />
+                  Chiqish
+                </Button>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <Link to="/login">
+                  <Button variant="secondary">Kirish</Button>
+                </Link>
+                <Link to="/register">
+                  <Button variant="primary">Ro\'yxatdan o\'tish</Button>
+                </Link>
+              </div>
+            )}
           </div>
 
           <button
@@ -105,9 +131,27 @@ export const Header: React.FC = () => {
                     </Link>
                   )
                 ))}
-                <Button variant="primary" className="w-full">
-                  Ariza topshirish
-                </Button>
+                {isAuthenticated ? (
+                  <div className="pt-4 border-t border-gray-200">
+                    <div className="flex items-center space-x-2 text-text-primary mb-4">
+                      <User className="w-5 h-5" />
+                      <span className="font-medium">{user?.name}</span>
+                    </div>
+                    <Button variant="secondary" onClick={handleLogout} className="w-full flex items-center gap-2">
+                      <LogOut className="w-4 h-4" />
+                      Chiqish
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="pt-4 border-t border-gray-200 space-y-3">
+                    <Link to="/login" onClick={() => dispatch(setMobileMenuOpen(false))}>
+                      <Button variant="secondary" className="w-full">Kirish</Button>
+                    </Link>
+                    <Link to="/register" onClick={() => dispatch(setMobileMenuOpen(false))}>
+                      <Button variant="primary" className="w-full">Ro\'yxatdan o\'tish</Button>
+                    </Link>
+                  </div>
+                )}
               </div>
             </motion.div>
           )}

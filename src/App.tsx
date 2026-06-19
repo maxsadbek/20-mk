@@ -1,14 +1,17 @@
 import { useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Lenis from 'lenis'
 import { Header } from './components/Header'
+import { Footer } from './components/Footer'
 import { Hero } from './components/sections/Hero'
 import { About } from './components/sections/About'
 import { News } from './components/sections/News'
 import { Teachers } from './components/sections/Teachers'
 import { Achievements } from './components/sections/Achievements'
 import { Gallery } from './components/sections/Gallery'
-import { Contact } from './components/sections/Contact'
-import { Footer } from './components/Footer'
+import { Contact } from './pages/Contact'
+import { Login } from './pages/Login'
+import { Register } from './pages/Register'
 
 function App() {
   useEffect(() => {
@@ -54,15 +57,21 @@ function App() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main>
-        <Hero />
-        <About />
-        <News />
-        <Teachers />
-        <Achievements />
-        <Gallery />
-        <Contact />
-      </main>
+      <Routes>
+        <Route path="/" element={
+          <main>
+            <Hero />
+            <About />
+            <News />
+            <Teachers />
+            <Achievements />
+            <Gallery />
+          </main>
+        } />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
       <Footer />
     </div>
   )
