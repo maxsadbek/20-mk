@@ -10,8 +10,7 @@ import { Teachers } from './components/sections/Teachers'
 import { Achievements } from './components/sections/Achievements'
 import { Gallery } from './components/sections/Gallery'
 import { Contact } from './pages/Contact'
-import { Login } from './pages/Login'
-import { Register } from './pages/Register'
+import { Auth } from './pages/Auth'
 
 function App() {
   useEffect(() => {
@@ -69,8 +68,9 @@ function App() {
           </main>
         } />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/login" element={<Auth />} />
+        <Route path="/register" element={<Auth />} />
       </Routes>
       <Footer />
     </div>

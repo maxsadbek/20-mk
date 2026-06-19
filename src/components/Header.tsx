@@ -49,7 +49,7 @@ export const Header: React.FC = () => {
                   key={item.path}
                   href={item.path}
                   onClick={handleNavClick}
-                  className="text-text-secondary hover:text-brand-yellow transition-colors duration-200 cursor-pointer"
+                  className="text-text-secondary hover:text-brand-yellow transition-all duration-300 hover:scale-110 cursor-pointer"
                 >
                   {item.name}
                 </a>
@@ -57,7 +57,7 @@ export const Header: React.FC = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className="text-text-secondary hover:text-brand-yellow transition-colors duration-200"
+                  className="text-text-secondary hover:text-brand-yellow transition-all duration-300 hover:scale-110"
                 >
                   {item.name}
                 </Link>
@@ -76,11 +76,8 @@ export const Header: React.FC = () => {
               </div>
             ) : (
               <div className="flex items-center space-x-4">
-                <Link to="/login">
+                <Link to="/auth">
                   <Button variant="secondary">Kirish</Button>
-                </Link>
-                <Link to="/register">
-                  <Button variant="primary">Ro\'yxatdan o\'tish</Button>
                 </Link>
               </div>
             )}
@@ -143,11 +140,8 @@ export const Header: React.FC = () => {
                   </div>
                 ) : (
                   <div className="pt-4 border-t border-gray-200 space-y-3">
-                    <Link to="/login" onClick={() => dispatch(setMobileMenuOpen(false))}>
+                    <Link to="/auth" onClick={() => dispatch(setMobileMenuOpen(false))}>
                       <Button variant="secondary" className="w-full">Kirish</Button>
-                    </Link>
-                    <Link to="/register" onClick={() => dispatch(setMobileMenuOpen(false))}>
-                      <Button variant="primary" className="w-full">Ro\'yxatdan o\'tish</Button>
                     </Link>
                   </div>
                 )}

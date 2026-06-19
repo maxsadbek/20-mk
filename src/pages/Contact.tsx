@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { motion } from 'framer-motion'
 import { Input } from '../components/ui/Input'
 import { Textarea } from '../components/ui/Textarea'
 import { Button } from '../components/ui/Button'
@@ -37,18 +38,37 @@ export const Contact: React.FC = () => {
     <div className="min-h-screen pt-24 pb-16 bg-white">
       <div className="container mx-auto px-4">
         <AnimatedText>
-          <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Aloqa</h1>
-            <div className="w-20 h-1.5 bg-brand-yellow rounded-full mx-auto"></div>
-          </div>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: '80px' }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="w-20 h-1.5 bg-brand-yellow rounded-full mx-auto"
+            ></motion.div>
+          </motion.div>
         </AnimatedText>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-start">
-          <AnimatedText delay={0.2}>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
             <div className="bg-gray-50 rounded-3xl p-8 lg:p-12 h-full border border-gray-100">
-              <h3 className="text-3xl font-bold text-gray-900 mb-8">
+              <motion.h3
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="text-3xl font-bold text-gray-900 mb-8"
+              >
                 Biz bilan bog'laning
-              </h3>
+              </motion.h3>
               
               <div className="space-y-8">
                 <div className="flex items-start space-x-6 group">
@@ -86,9 +106,13 @@ export const Contact: React.FC = () => {
                 </div>
               </div>
             </div>
-          </AnimatedText>
+          </motion.div>
 
-          <AnimatedText delay={0.3}>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
             <Card className="p-8 lg:p-12 shadow-2xl shadow-gray-200/50 border border-gray-100 rounded-3xl">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -138,7 +162,7 @@ export const Contact: React.FC = () => {
                 </Button>
               </form>
             </Card>
-          </AnimatedText>
+          </motion.div>
         </div>
       </div>
     </div>

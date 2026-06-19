@@ -24,22 +24,22 @@ export const Footer: React.FC = () => {
             <h4 className="text-lg font-bold mb-6 text-white">Tezkor havolalar</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-brand-yellow hover:translate-x-1 transition-all duration-300 inline-block">
+                <Link to="/" className="text-gray-400 hover:text-brand-yellow hover:translate-x-2 transition-all duration-300 inline-block">
                   Bosh sahifa
                 </Link>
               </li>
               <li>
-                <Link to="#about" className="text-gray-400 hover:text-brand-yellow hover:translate-x-1 transition-all duration-300 inline-block">
+                <Link to="#about" className="text-gray-400 hover:text-brand-yellow hover:translate-x-2 transition-all duration-300 inline-block">
                   Biz haqimizda
                 </Link>
               </li>
               <li>
-                <Link to="#news" className="text-gray-400 hover:text-brand-yellow hover:translate-x-1 transition-all duration-300 inline-block">
+                <Link to="#news" className="text-gray-400 hover:text-brand-yellow hover:translate-x-2 transition-all duration-300 inline-block">
                   Yangiliklar
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-400 hover:text-brand-yellow hover:translate-x-1 transition-all duration-300 inline-block">
+                <Link to="/contact" className="text-gray-400 hover:text-brand-yellow hover:translate-x-2 transition-all duration-300 inline-block">
                   Aloqa
                 </Link>
               </li>
@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 hover:-translate-y-1 transition-all duration-300 shadow-lg"
+                className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 hover:-translate-y-2 hover:shadow-glow transition-all duration-300 shadow-lg"
                 aria-label="Facebook"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
               </a>
               <a
                 href="#"
-                className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 hover:-translate-y-1 transition-all duration-300 shadow-lg"
+                className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 hover:-translate-y-2 hover:shadow-glow transition-all duration-300 shadow-lg"
                 aria-label="Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -69,7 +69,7 @@ export const Footer: React.FC = () => {
               </a>
               <a
                 href="#"
-                className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 hover:-translate-y-1 transition-all duration-300 shadow-lg"
+                className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-gray-900 hover:-translate-y-2 hover:shadow-glow transition-all duration-300 shadow-lg"
                 aria-label="Telegram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
